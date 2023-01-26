@@ -1,0 +1,40 @@
+{% extends 'myprofile/base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-5 offset-1">
+      <h1>Weather in your city</h1>
+      <form action="" method="post">
+        {% csrf_token %}
+        <label for="city">City</label>
+        {{form.name}}
+        <input
+          type="submit"
+          name="send"
+          value="sudmit"
+          class="mt-2 btn btn-danger"
+        />
+      </form>
+    </div>
+
+    <div class="col-4 offset-1">
+      <h1>information</h1>
+
+      {% for info in all_info %}
+      <div class="alert alert-info">
+        <div class="row">
+          <div class="col-9">
+            <b>City: </b> {{ info.city }} <br />
+            <b>Temperature: </b> {{ info.temp }} <sup>0</sup>
+          </div>
+          <div class="col-2 offset-1">
+            <img
+              src="http://openweathermap.org/img/w/{{ info.icon }}.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      {% endfor %} {% endblock %}
+    </div>
+  </div>
+</div>
