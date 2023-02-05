@@ -46,20 +46,7 @@ def weather_def_to_create_a_weather_on_main_page(request):
     cities_from_database = City.objects.all()
     all_cities_list = []
     form = Add_City_Form(request.POST)
-
-    # def methods():
-    #     if request.method == 'POST':
-    #         form = Add_City_Form(request.POST)
-    #         form.save()
-    #         return redirect('http://127.0.0.1:8000', permanent=True)
-
-    def redirect_form():
-        form = Add_City_Form(request.POST)
-        if request.method == 'POST':
-            form.save()
-            return redirect('http://127.0.0.1:8000/Docs')
-
-    redirect_form()
+    
 
     for city in cities_from_database:
         responce = requests.get(url_adress_weather.format(city.name)).json()
